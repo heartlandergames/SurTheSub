@@ -38,9 +38,10 @@ function OpenInventory(p : Player)
                 toDisplay.Add(g.GetComponent(Item));
             }
 
-        var menu = Instantiate(invMenu, canvas.transform.position, canvas.transform.rotation); 
+        var prefab = Instantiate(invMenu, canvas.transform.position, canvas.transform.rotation); 
+        var menu = prefab.transform.GetChild(0).GetChild(0).gameObject;
         var mRT : RectTransform = menu.GetComponent(RectTransform);  
-        menu.transform.SetParent(canvas.transform);
+        prefab.transform.SetParent(canvas.transform);
         Debug.Log(toDisplay.Count-1);
 
         if(toDisplay.Count >=1)
@@ -61,7 +62,7 @@ function OpenInventory(p : Player)
                 
             }
         }
-    invGO = menu;
+    invGO = prefab;
     invOpen = true;
     Cursor.lockState = CursorLockMode.None;
     Cursor.visible = true;
@@ -85,21 +86,18 @@ function ItemInfo(g:GameObject)
 {
     if(!itemOpen)
     {
-        itemGO = Instantiate(itemMenu, canvas.transform.position, canvas.transform.rotation);
+        itemGO = Instantiate(itemMenu, invGO.transform.position, invGO.transform.rotation);
         itemGO.transform.SetParent(canvas.transform);
+        itemGO.GetComponent(RectTransform).localPosition.x += invGO.GetComponent(RectTransform).rect.width;
         itemGO.GetComponent(ItemMenu).thisItem = g;
         itemGO.GetComponent(ItemMenu).player = character;
         itemOpen = true;
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
         return;
     }
     if(itemOpen)
     {
         Destroy(itemGO);
         itemOpen = false;
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = true;
         OpenInventory(character);
         OpenInventory(character);
         return;

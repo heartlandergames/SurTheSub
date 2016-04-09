@@ -384,7 +384,7 @@ MonoBehaviour:
   canvas: {fileID: 1062889865}
   character: {fileID: 0}
   invGO: {fileID: 0}
-  invMenu: {fileID: 192646, guid: 7d0c1b80ca724ac49a232383140206cc, type: 2}
+  invMenu: {fileID: 123934, guid: 782fd81036800fa4ebdbc2224ad9ca5a, type: 2}
   invButton: {fileID: 184930, guid: 168aec19adb1d4245b44ec236acc46b2, type: 2}
   invOpen: 0
   itemGO: {fileID: 0}
@@ -824,6 +824,10 @@ Prefab:
     - target: {fileID: 11448922, guid: 502ab884a9bf3c049b3a9e8c04452711, type: 2}
       propertyPath: mouseLook.lockCursor
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161638, guid: 502ab884a9bf3c049b3a9e8c04452711, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 502ab884a9bf3c049b3a9e8c04452711, type: 2}
