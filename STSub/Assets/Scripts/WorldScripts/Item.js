@@ -2,7 +2,9 @@
 
 class Item extends MonoBehaviour{
 
-var id : String;
+    var id : String;
+
+var icon : Sprite;
 
 var itemName : String;
 
@@ -32,7 +34,10 @@ var lastCheck : float;
 
 
 function Start () {
-    ItemFirst();
+    if(itemName == "RandomizedItem")
+    {
+        ItemFirst();
+    }
 }
 
 
@@ -63,6 +68,7 @@ function Item(nam : String, typ : int, wei : float, siz : Vector3, quan : float,
     
     function ItemFirst()
     {
+        var nam : String;
         mat =  Random.Range(0,8);
         type = Random.Range(0,6);
         weight = Random.Range(.1,50);
@@ -91,7 +97,7 @@ function Item(nam : String, typ : int, wei : float, siz : Vector3, quan : float,
                 mat = 5;
                 break;
             case itemType.Container:
-                GetComponent(MeshRenderer).material = Resources.Load("Materials/Brown");
+                GetComponent(MeshRenderer).material = Resources.Load("Materials/Container");
                 break;
             case itemType.Construction:
                 GetComponent(MeshRenderer).material = Resources.Load("Materials/Green");
@@ -106,7 +112,7 @@ function Item(nam : String, typ : int, wei : float, siz : Vector3, quan : float,
                 break;
                
         }
-        itemName = mat.ToString() + " " + type.ToString();
-        gameObject.name = itemName;
+        nam = mat.ToString() + " " + type.ToString();
+        gameObject.name = nam + itemName;
     }
 }

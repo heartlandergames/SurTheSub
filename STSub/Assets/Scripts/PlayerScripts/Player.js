@@ -21,6 +21,7 @@ var weight : float;
 
 var height : float;
 
+var fave : Item = new Item();
 
 //Components on this Player
 var inventory : Inventory;
@@ -50,7 +51,7 @@ function Start () {
     {Cursor.visible = false;}
     if(Cursor.lockState != CursorLockMode.Locked)
     {Cursor.lockState = CursorLockMode.Locked;}
-}
+    }
 
 function Update () {
     Focus();

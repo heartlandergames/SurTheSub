@@ -24,7 +24,7 @@ function Update () {
 
 
 function Add(g : GameObject)
-    {
+{
         //Item script of the object to add
         var toAdd : Item = g.GetComponent(Item); 
     
@@ -92,31 +92,31 @@ function Add(g : GameObject)
     SetForInventory(g);
     itemsList.Add(g);
     Recalculate();
-
-        
 }
 
 function Remove(g: GameObject)
-    {
+{
         SetForRemove(g);
         itemsList.Remove(g);
         g.transform.position += GetComponent(Player).cameraHolder.forward;
-    }
+        Recalculate();
+}
 
-    function Equip (g:GameObject)
-        {
+function Equip (g:GameObject){
 
-        }
+}
 
-        function Split(i :Item) : Item
-        {
-            var splitVal : float = i.quantity%2;
-            var splitCopy : Item = new Item();
-            splitCopy = i;
-            splitCopy.quantity = splitVal;
-            i.quantity = splitVal;
-            return splitCopy;
-        }
+
+        
+function Split(i :Item) : Item
+{
+    var splitVal : float = i.quantity%2;
+    var splitCopy : Item = new Item();
+    splitCopy = i;
+    splitCopy.quantity = splitVal;
+    i.quantity = splitVal;
+    return splitCopy;
+}
 
         function Sort()
         {
@@ -147,7 +147,7 @@ function Remove(g: GameObject)
         Debug.Log("Should Work");
     }
 
-    function SetForInventory(g :GameObject)
+function SetForInventory(g :GameObject)
         {
             if(g.GetComponent(Rigidbody)!= null)
             {
