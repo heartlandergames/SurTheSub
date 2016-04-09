@@ -72,19 +72,23 @@ function Item(nam : String, typ : int, wei : float, siz : Vector3, quan : float,
         durability = Random.Range(0,100);
         transform.localScale = size;
         lastCheck = Time.time;
-        itemName = mat.ToString() + " " + type.ToString();
-        gameObject.name = itemName;
+        
 
-        switch (type)
+        
+        switch (type) //apply matType and meshRenderer.material based on itemType
         {
             case itemType.Appliance:
-                GetComponent(MeshRenderer).material = Resources.Load("Materials/White");
+                GetComponent(MeshRenderer).material = Resources.Load("Materials/Appliance");
+                Debug.Log("Appliace");
+                mat = matType.Metal;
                 break;
             case itemType.Connector:
-                GetComponent(MeshRenderer).material = Resources.Load("Materials/Gray");
+                GetComponent(MeshRenderer).material = Resources.Load("Materials/Connector");
+                mat = matType.Metal;
                 break;
             case itemType.Consumable:
-                GetComponent(MeshRenderer).material = Resources.Load("Materials/Blue");
+                GetComponent(MeshRenderer).material = Resources.Load("Materials/Consumable");
+                mat = 5;
                 break;
             case itemType.Container:
                 GetComponent(MeshRenderer).material = Resources.Load("Materials/Brown");
@@ -94,10 +98,15 @@ function Item(nam : String, typ : int, wei : float, siz : Vector3, quan : float,
                 break;
             case itemType.Clothing:
                 GetComponent(MeshRenderer).material = Resources.Load("Materials/Red");
+                mat = matType.Cloth;
                 break;
             case itemType.Tool:
                 GetComponent(MeshRenderer).material = Resources.Load("Materials/Black");
+                mat = Random.Range(0,2);
                 break;
+               
         }
+        itemName = mat.ToString() + " " + type.ToString();
+        gameObject.name = itemName;
     }
 }

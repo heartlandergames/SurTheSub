@@ -45,23 +45,19 @@ function Add(g : GameObject)
         //There are items in the inventory
         if(itemsList.Count-1 >= 1)
         {
-            Debug.Log("Items in List");
             
             //iterate through the items in inventory
             for(var go : GameObject in itemsList)
             {
-                Debug.Log("Checking List:  " + go.name);
                 //Item script of the current item in inventory during iteration
                 var i : Item = go.GetComponent(Item);
                 
                 //if they share the same name
                 if(i.itemName == toAdd.itemName)
             {
-                    Debug.Log("Names Match");
                 //if they also will remain under max stack
                     if(i.quantity + toAdd.quantity < i.maxQuan)
             {
-                        Debug.Log("Less than total");
                         
                 //add the total quantities
                         i.quantity += toAdd.quantity;
@@ -69,7 +65,6 @@ function Add(g : GameObject)
                 //if they will excede the maxStack size
                         if(i.quantity + toAdd.quantity > i.maxQuan)
             {
-                            Debug.Log("more than total");
                 //the left over amount                
                             var left : float = (i.quantity + toAdd.quantity) - i.maxQuan;
                             
@@ -80,6 +75,7 @@ function Add(g : GameObject)
                             SetForInventory(g);
                             itemsList.Add(g);
                             Recalculate();
+                            Debug.Log("Added " + newItem.name + " to Inventory");
                             return;
                         
             }   
