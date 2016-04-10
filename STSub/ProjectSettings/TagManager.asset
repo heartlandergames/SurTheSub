@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RetText
   - Manager
+  - WorkOrder
   layers:
   - Default
   - TransparentFX

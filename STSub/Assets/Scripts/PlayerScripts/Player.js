@@ -176,6 +176,10 @@ function AbilityCheck()
     {
         Drop();
     }
+    if(Input.GetButtonUp("B") && left != null && right != null)
+    {
+        SendToWorkbench();
+    }
 }
 
 
@@ -237,11 +241,38 @@ function SetForPickUp(g:GameObject)
             }
             
         }
+    
 
+
+    ///Tells the manager to open the inventory for this player
     function OpenInv()
     {
         manager.uiHandler.character = this;
         manager.uiHandler.OpenInventory(this);
     }
 
-    
+
+
+        //sends the current held items to the workbench as a workorder attached to a new gameobject
+
+    function SendToWorkbench()
+    {
+        //new gameobject
+        var go : GameObject = new GameObject();
+        go.AddComponent(WorkOrder);
+        go.name = "WorkOrder Object";
+
+        //new "WorkOrder"
+        var bill : WorkOrder = go.GetComponent(WorkOrder);
+        //set new Work Order items and Player
+        bill.character = this;
+        bill.item1 = left;
+        bill.item2 = right;
+
+        //attach the currently held items to the new gameobject for transfer. (prevents them from being invisible when this gets deactivated)
+        left.transform.SetParent(go.transform);
+        right.transform.SetParent(go.transform);
+
+        //Call the Workbench function on the game Manager and feed it the new WorkOder and GameObject
+        manager.ToWorkbench(go, this.gameObject);
+    }
